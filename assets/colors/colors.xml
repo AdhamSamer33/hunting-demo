@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#224D4E</color>
+    <color name="secondaryColor">#FFB800</color>
+    <color name="textColor">#224D4E</color>
+    <color name="yellowGrad1">#FFD600</color>
+    <color name="yellowGrad2">#EDAB00</color>
+</resources>

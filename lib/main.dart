@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hunting_demo/ProfileCard/profile_card.dart';
+import 'package:hunting_demo/UpgradeButton/upgrade_button.dart';
+import 'package:hunting_demo/gen/colors.gen.dart';
+
+import 'gen/assets.gen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +23,8 @@ class MyApp extends StatelessWidget {
        return MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primaryColor),
+            fontFamily: Assets.fonts.sfProDisplay.sfprodisplayregular,
             useMaterial3: true,
           ),
           home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -47,7 +52,27 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: const ProfileCard(),
+      body: Container(
+        decoration: const BoxDecoration(
+          color: MyColors.primaryColor
+        ),
+        child: const Column(
+          children: [
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: ProfileCard(),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: UpgradeButton(),
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
