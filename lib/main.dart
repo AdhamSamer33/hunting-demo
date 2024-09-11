@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hunting_demo/ProfileCard/profile_card.dart';
+import 'package:hunting_demo/SettingsTableView/settings_table.dart';
 import 'package:hunting_demo/UpgradeButton/upgrade_button.dart';
 import 'package:hunting_demo/gen/colors.gen.dart';
 
@@ -52,13 +53,14 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          color: MyColors.primaryColor
-        ),
-        child: const Column(
-          children: [
-            Column(
+      body: Column(
+        children: [
+          Container(
+            height: ScreenUtil.defaultSize.height / 2,
+            decoration: const BoxDecoration(
+              color: MyColors.primaryColor
+            ),
+            child: const Column(
               children: [
                 Padding(
                   padding: EdgeInsets.all(16.0),
@@ -67,11 +69,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 Padding(
                   padding: EdgeInsets.all(16.0),
                   child: UpgradeButton(),
-                )
+                ),
               ],
             ),
-          ],
-        ),
+          ),
+          Container(
+            decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      end: Alignment.bottomCenter,
+                      begin: Alignment.topCenter,
+                      colors: [
+                        MyColors.greenGrad1,
+                        MyColors.greenGrad2,
+                      ]
+                  )
+              ),
+            child: const SettingsTable(),
+          )
+        ],
       ),
     );
   }

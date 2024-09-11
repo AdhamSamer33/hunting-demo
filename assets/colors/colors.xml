@@ -5,4 +5,6 @@
     <color name="textColor">#224D4E</color>
     <color name="yellowGrad1">#FFD600</color>
     <color name="yellowGrad2">#EDAB00</color>
+    <color name="greenGrad1">#2C5D5E</color>
+    <color name="greenGrad2">#193E3E</color>
 </resources>
