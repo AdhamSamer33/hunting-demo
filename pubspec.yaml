@@ -71,6 +71,7 @@ flutter:
     - assets/fonts/SF_PRO_DISPLAY/SFPRODISPLAYREGULAR.OTF
     - assets/images/ProfileImage.png
     - assets/images/arrow.png
+    - assets/images/chevron.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

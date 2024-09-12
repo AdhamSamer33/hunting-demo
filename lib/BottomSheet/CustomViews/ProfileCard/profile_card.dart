@@ -4,20 +4,14 @@ import 'package:hunting_demo/gen/assets.gen.dart';
 import 'package:hunting_demo/gen/colors.gen.dart';
 
 
-class ProfileCard extends StatefulWidget {
+class ProfileCard extends StatelessWidget {
   final AssetGenImage profileImage;
   final String profileName;
   final Function onTapGuest;
   const ProfileCard({super.key, required this.profileImage, required this.profileName, required this.onTapGuest});
 
   @override
-  State<ProfileCard> createState() => _ProfileCardState();
-}
-
-class _ProfileCardState extends State<ProfileCard> {
-  @override
   Widget build(BuildContext context) {
-
     return Row(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +21,7 @@ class _ProfileCardState extends State<ProfileCard> {
             color: Colors.transparent
           ),
           child: Image.asset(
-            widget.profileImage.keyName,
+            profileImage.keyName,
             width: 45.w,
             height: 45.h,
             centerSlice: const Rect.fromLTRB(20, 0, 20, 0),
@@ -41,7 +35,7 @@ class _ProfileCardState extends State<ProfileCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              widget.profileName,
+              profileName,
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.w500,
@@ -52,7 +46,7 @@ class _ProfileCardState extends State<ProfileCard> {
               // width: 114.w,
               height: 24.h,
               child: OutlinedButton(
-                  onPressed: onPressed,
+                  onPressed:() => onTapGuest.call(),
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(color: MyColors.secondaryColor, width: 1), // Border color and width
                     shape: const StadiumBorder(),
@@ -74,9 +68,5 @@ class _ProfileCardState extends State<ProfileCard> {
       ],
     );
   }
-
-  void onPressed() {
-    setState(() => widget.onTapGuest.call());
-    }
 
 }

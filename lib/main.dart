@@ -45,8 +45,21 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
         middle: Text(title),
       ),
-      backgroundColor: Color.lerp(MyColors.greenGrad1, MyColors.greenGrad2, 1),
-      body: const ProfileBottomSheet(),
+      body: Container(
+        width: MediaQuery.sizeOf(context).width,
+        height: MediaQuery.sizeOf(context).height,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              MyColors.greenGrad1,
+              MyColors.greenGrad2
+            ]
+          )
+        ),
+        child: const ProfileBottomSheet(),
+      ),
     );
   }
 }
