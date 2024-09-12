@@ -1,35 +1,33 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hunting_demo/gen/assets.gen.dart';
 import 'package:hunting_demo/gen/colors.gen.dart';
 
 class UpgradeButton extends StatefulWidget {
-  const UpgradeButton({super.key});
+  final String price;
+  final List<String> features;
+  final Function onTapUpgrade;
+  const UpgradeButton({super.key, required this.price, required this.features, required this.onTapUpgrade});
 
   @override
   State<UpgradeButton> createState() => _UpgradeButtonState();
 }
 String generateFeatures(List<String> features) {
   List<String> modifiedFeatures = [];
-  features.forEach((feature) {
-    modifiedFeatures.add("- ${feature}\n");
-  });
+  for (var feature in features) {
+    modifiedFeatures.add("- $feature\n");
+  }
   return modifiedFeatures.join();
 }
 class _UpgradeButtonState extends State<UpgradeButton> {
-  List<String> features = ["Manage your hunting and fishing licenses", "Hunt or fish on public grounds with the app", "Get game reserve tickets for private hunting grounds (Soon)"];
   @override
   Widget build(BuildContext context) {
+  List<String> features = widget.features;
     return SizedBox(
         width: 353.w,
         height: 193.h,
         child: GestureDetector(
-          onTap: () {
-            if (kDebugMode) {
-              print("Upgrade Pressed !");
-            }
-          },
+          onTap: () => widget.onTapUpgrade.call(),
           child: Container(
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(14)),
@@ -72,14 +70,14 @@ class _UpgradeButtonState extends State<UpgradeButton> {
                     width: 213.w,
                     height: 183.h,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 18.5, top: 14),
+                      padding: const EdgeInsets.only(left: 18.5, top: 10),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Row(
                             children: [
                               Text(
-                                "40.000 ",
+                                "${widget.price} ",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20.sp,
@@ -96,12 +94,19 @@ class _UpgradeButtonState extends State<UpgradeButton> {
                               ),
                             ],
                           ),
-                          Text(
-                              generateFeatures(features),
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w300,
+
+                          SizedBox(
+                            height: 120.h,
+                            child: SingleChildScrollView(
+                              child: Text(
+                                  generateFeatures(features),
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
                             ),
                           )
                         ],

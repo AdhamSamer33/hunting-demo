@@ -1,16 +1,14 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hunting_demo/gen/assets.gen.dart';
 import 'package:hunting_demo/gen/colors.gen.dart';
 
-// import '../res/assets_res.dart';
-// import 'colors';
-
 
 class ProfileCard extends StatefulWidget {
-  const ProfileCard({super.key});
+  final AssetGenImage profileImage;
+  final String profileName;
+  final Function onTapGuest;
+  const ProfileCard({super.key, required this.profileImage, required this.profileName, required this.onTapGuest});
 
   @override
   State<ProfileCard> createState() => _ProfileCardState();
@@ -29,10 +27,10 @@ class _ProfileCardState extends State<ProfileCard> {
             color: Colors.transparent
           ),
           child: Image.asset(
-            Assets.images.profileImage.keyName,
+            widget.profileImage.keyName,
             width: 45.w,
             height: 45.h,
-            centerSlice: const Rect.fromLTRB((20), 0, (20), 0),
+            centerSlice: const Rect.fromLTRB(20, 0, 20, 0),
           ),
         ),
         SizedBox(
@@ -43,7 +41,7 @@ class _ProfileCardState extends State<ProfileCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "John Hutchinson",
+              widget.profileName,
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.w500,
@@ -75,15 +73,10 @@ class _ProfileCardState extends State<ProfileCard> {
         )
       ],
     );
-    // TODO: implement build
   }
 
   void onPressed() {
-    setState(() {
-      if (kDebugMode) {
-        print("Pressed");
-      }}
-    );
+    setState(() => widget.onTapGuest.call());
     }
 
 }

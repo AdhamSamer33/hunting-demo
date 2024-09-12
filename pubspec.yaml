@@ -37,7 +37,6 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_screenutil: ^5.9.3
   flutter_gen: ^5.7.0
-  flutter_asset_generator: ^1.2.0
   flutter_colorpicker: ^1.1.0
 
 dev_dependencies:
@@ -66,7 +65,6 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/colors/colors.dart
     - assets/colors/colors.xml
     - assets/fonts/SF_PRO_DISPLAY/SFPRODISPLAYBOLD.OTF
     - assets/fonts/SF_PRO_DISPLAY/SFPRODISPLAYMEDIUM.OTF

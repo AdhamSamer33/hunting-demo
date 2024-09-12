@@ -1,16 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hunting_demo/ProfileCard/profile_card.dart';
-import 'package:hunting_demo/SettingsTableView/settings_table.dart';
-import 'package:hunting_demo/UpgradeButton/upgrade_button.dart';
 import 'package:hunting_demo/gen/colors.gen.dart';
 
+import 'BottomSheet/View/bottom_sheet.dart';
 import 'gen/assets.gen.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,19 +15,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(393, 800),
-      builder: (context, build) {
-       return MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primaryColor),
-            fontFamily: Assets.fonts.sfProDisplay.sfprodisplayregular,
-            useMaterial3: true,
-          ),
-          home: const MyHomePage(title: 'Flutter Demo Home Page'),
-        );
-      },
+    return MaterialApp(
+      title: 'Hunting Demo',
+      theme: ThemeData(
+          primaryColor: MyColors.primaryColor,
+          fontFamily: Assets.fonts.sfProDisplay.sfprodisplayregular,
+      ),
+      home: const MyHomePage(title: 'Hunting Demo'),
     );
   }
 }
@@ -45,49 +36,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String get title => widget.title;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+      appBar: CupertinoNavigationBar(
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
+        middle: Text(title),
       ),
-      body: Column(
-        children: [
-          Container(
-            height: ScreenUtil.defaultSize.height / 2,
-            decoration: const BoxDecoration(
-              color: MyColors.primaryColor
-            ),
-            child: const Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: ProfileCard(),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: UpgradeButton(),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      end: Alignment.bottomCenter,
-                      begin: Alignment.topCenter,
-                      colors: [
-                        MyColors.greenGrad1,
-                        MyColors.greenGrad2,
-                      ]
-                  )
-              ),
-            child: const SettingsTable(),
-          )
-        ],
-      ),
+      backgroundColor: Color.lerp(MyColors.greenGrad1, MyColors.greenGrad2, 1),
+      body: const ProfileBottomSheet(),
     );
   }
 }
